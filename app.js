@@ -51,8 +51,8 @@ function clear() {
 
 
 numbers.forEach(number => {
-    number.addEventListener("click", event => {
-        if (firstNumber != "" || display.textContent != Number) {
+    number.addEventListener("click", () => {
+        if (firstNumber !== "" && display.textContent == firstNumber || display.textContent.includes("Please")) {
             display.textContent = "";
         }
         display.textContent += number.value
@@ -60,8 +60,8 @@ numbers.forEach(number => {
 })
 
 operators.forEach(button => {
-    button.addEventListener("click", event => {
-        if (firstNumber == "") {
+    button.addEventListener("click", () => {
+        if (firstNumber === "") {
             firstNumber = parseInt(display.textContent);      
         } else {
             secondNumber = parseInt(display.textContent);
@@ -72,14 +72,17 @@ operators.forEach(button => {
     })
 } )
 
-equalsButton.addEventListener("click", event => {
-    if ( firstNumber == "" || secondNumber == "") {
-        display.textContent = "Please enter numbers"
+equalsButton.addEventListener("click", () => {
+    if ( firstNumber === "" || operator !== "" && display.textContent === "") {
+        display.textContent = "Please enter numbers";
+        operator = "";
+        firstNumber = "";
+        secondNumber = "";
     } else {
         secondNumber =  parseInt(display.textContent);
         display.textContent = operate(operator,firstNumber,secondNumber);
-        operator = ""
-        firstNumber = ""
+        operator = "";
+        firstNumber = parseInt(display.textContent);
     }
 })
 
