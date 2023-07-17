@@ -52,7 +52,6 @@ function clear() {
 
 
 
-
 numbers.forEach(number => {
     number.addEventListener("click", () => {
         if (firstNumber !== "" && display.textContent == firstNumber || display.textContent.includes("Please") || isOperationDone === true) {
