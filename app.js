@@ -1,13 +1,15 @@
 const display = document.querySelector(".display")
+const operation = document.querySelector(".operation")
 const equalsButton = document.querySelector(".equals-button")
 const numbers = document.querySelectorAll(".number-button")
 const operators = document.querySelectorAll(".operator-button")
 const clearButton = document.querySelector(".clear-button")
+const decimalButton = document.querySelector(".decimal-button")
 
 let firstNumber = ""
 let secondNumber = ""
 let operator = ""
-let isOperatorChosen = false
+let isOperationDone = false
 
 
 
@@ -45,6 +47,7 @@ function clear() {
     secondNumber = ""
     operator = ""
     display.textContent = ""
+    operation.textContent = ""
 }
 
 
@@ -52,23 +55,33 @@ function clear() {
 
 numbers.forEach(number => {
     number.addEventListener("click", () => {
-        if (firstNumber !== "" && display.textContent == firstNumber || display.textContent.includes("Please")) {
+        if (firstNumber !== "" && display.textContent == firstNumber || display.textContent.includes("Please") || isOperationDone === true) {
             display.textContent = "";
-        }
+        } 
         display.textContent += number.value
     })
 })
 
 operators.forEach(button => {
     button.addEventListener("click", () => {
-        if (firstNumber === "") {
-            firstNumber = parseInt(display.textContent);      
+        if (firstNumber === "" || isOperationDone === true) {
+            firstNumber = parseInt(display.textContent); 
         } else {
             secondNumber = parseInt(display.textContent);
             display.textContent = operate(operator,firstNumber,secondNumber);
-            firstNumber = parseInt(display.textContent);      
+            firstNumber = parseInt(display.textContent);   
+            isOperationDone = true   
         }  
+
         operator = button.value;
+        
+        if (secondNumber === "" || isOperationDone === true) {
+            operation.textContent =  `${firstNumber} ${button.textContent}`
+            isOperationDone = false;
+            secondNumber = ""
+        } else {
+            operation.textContent +=  ` ${secondNumber}`
+        }
     })
 } )
 
@@ -80,11 +93,21 @@ equalsButton.addEventListener("click", () => {
         secondNumber = "";
     } else {
         secondNumber =  parseInt(display.textContent);
+        operation.textContent += ` ${secondNumber}`;
         display.textContent = operate(operator,firstNumber,secondNumber);
         operator = "";
         firstNumber = parseInt(display.textContent);
+        secondNumber = "";
+        isOperationDone = true
     }
 })
+
+decimalButton.addEventListener("click", () => {
+    if (Number.isInteger(parseFloat(display.textContent))) {
+      display.textContent += ",";
+    }
+  })
+
 
 clearButton.addEventListener("click", clear)
 

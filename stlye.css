@@ -1,5 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+
 .display {
     border: 1px solid black;
     width: 100px;
     height: 40px;
+    margin: 2rem;
 }
