@@ -55,12 +55,13 @@ button {
     height: 14px;
     font-size: 12px;
     margin: 10px 0 0 10px; 
+    color: rgb(198, 140, 82) ;
 }
 
 .display {
     font-size: 32px;
     align-self: flex-end;
-    margin:0 10px 10px 0;
+    margin:0 10px 10px 10px;
     font-weight: 400;
 }
 

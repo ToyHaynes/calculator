@@ -1,10 +1,11 @@
 const display = document.querySelector(".display")
 const operation = document.querySelector(".operation")
-const equalsButton = document.querySelector(".equals-button")
 const numbers = document.querySelectorAll(".number-button")
 const operators = document.querySelectorAll(".operator-button")
 const clearButton = document.querySelector(".clear-button")
+const equalsButton = document.querySelector(".equals-button")
 const decimalButton = document.querySelector(".decimal-button")
+const deleteButton = document.querySelector(".delete-button")
 
 let firstNumber = ""
 let secondNumber = ""
@@ -21,40 +22,52 @@ function operate(op, a, b) {
       "*": (a, b) => a * b,
       "/": (a, b) => a / b,
     };
-    if (op == "/" && b == 0) {
-        return "Captain we have a problem"
+  
+    if (op === "/" && b === 0) {
+      return "Captain, we have a problem";
     }
-
-    result = operations[op](a, b);
-    formatNumberWithDecimals(result,6)
-    return result;
+  
+    const result = operations[op](a, b);
+    return formatNumberWithDecimals(result, 11);
   }
+  
 
 
 function formatNumberWithDecimals(number, maxDecimals) {
-    const result = number.toFixed(maxDecimals); 
-
-    if (Number.isInteger(number) || result.length <= maxDecimals + 2) {
-        return result; 
+    const roundedResult = parseFloat(number.toFixed(maxDecimals));
+    const resultString = roundedResult.toString();
+  
+    if (resultString.length > maxDecimals + 1) {
+      return resultString.slice(0, maxDecimals + 1);
     } else {
-        return parseFloat(result).toFixed(maxDecimals); 
+      return resultString;
     }
 }
+  
+
+
+deleteButton.addEventListener("click", () => {
+    const displayText = display.textContent;
+    display.textContent = displayText.slice(0, displayText.length - 1);
+  });
+
 
 
 function clear() {
     firstNumber = ""
     secondNumber = ""
     operator = ""
-    display.textContent = ""
+    display.textContent = "0"
     operation.textContent = ""
+    isOperationDone = false
 }
+
 
 
 
 numbers.forEach(number => {
     number.addEventListener("click", () => {
-        if (firstNumber !== "" && display.textContent == firstNumber || display.textContent.includes("Please") || isOperationDone === true) {
+        if (firstNumber !== "" && display.textContent == firstNumber || display.textContent === "0" || display.textContent.includes("Please") || isOperationDone === true) {
             display.textContent = "";
         } 
         display.textContent += number.value
@@ -64,11 +77,12 @@ numbers.forEach(number => {
 operators.forEach(button => {
     button.addEventListener("click", () => {
         if (firstNumber === "" || isOperationDone === true) {
-            firstNumber = parseInt(display.textContent); 
+            firstNumber = +(display.textContent); 
+            isOperationDone = false;
         } else {
-            secondNumber = parseInt(display.textContent);
+            secondNumber = +(display.textContent);
             display.textContent = operate(operator,firstNumber,secondNumber);
-            firstNumber = parseInt(display.textContent);   
+            firstNumber = +(display.textContent);   
             isOperationDone = true   
         }  
 
@@ -91,11 +105,11 @@ equalsButton.addEventListener("click", () => {
         firstNumber = "";
         secondNumber = "";
     } else {
-        secondNumber =  parseInt(display.textContent);
+        secondNumber =  +(display.textContent);
         operation.textContent += ` ${secondNumber}`;
         display.textContent = operate(operator,firstNumber,secondNumber);
         operator = "";
-        firstNumber = parseInt(display.textContent);
+        firstNumber = +(display.textContent);
         secondNumber = "";
         isOperationDone = true
     }
@@ -103,7 +117,7 @@ equalsButton.addEventListener("click", () => {
 
 decimalButton.addEventListener("click", () => {
     if (Number.isInteger(parseFloat(display.textContent))) {
-      display.textContent += ",";
+      display.textContent += ".";
     }
   })
 
