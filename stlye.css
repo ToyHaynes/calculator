@@ -1,22 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+button {
+   width: 58px; 
+   height: 50px;
+   border-style: outset;
+   border-width: thin;
+   box-shadow: none;
+   border-color: rgb(25, 25, 25);
+   padding: 0;
+   margin: 0;
+}
+
 .calculator {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 232px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 7px;
+    color: black;
 }
 
+.screen {
+    height: 70px;
+    width: 232px;
+    background-color: rgb(87, 87, 86);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.operation {
+    height: 14px;
+    font-size: 12px;
+    margin: 10px 0 0 10px;
+}
 
 .display {
-    border: 1px solid black;
-    width: 100px;
-    height: 40px;
-    margin: 2rem;
+    font-size: 32px;
+    align-self: flex-end;
+    margin:0 10px 14px 0;
+    font-weight: 400;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+
+.number-button,
+.decimal-button {
+    background-color: rgb(127, 127, 126);
+}
+
+.operator-button,
+.equals-button {
+    background-color: rgb(255, 148, 41);
+}
+
+.dark {
+    background-color: rgb(72, 72, 72);
+}
+
+.number-button:focus,
+.clear-button:focus,
+.decimal-button:focus,
+.delete-button:focus {
+    background-color: rgb(168, 168, 168);
+}
+
+.clear-button,
+.zero {
+    width: 116px;
+}
+
+.zero {
+    border-bottom-left-radius: 5px;
+}
+.equals-button {
+    border-bottom-right-radius: 5px;
 }
