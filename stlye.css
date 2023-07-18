@@ -31,9 +31,15 @@ button {
     align-items: center;
     width: 232px;
     border-radius: 5px;
-    box-shadow: 3px 3px 7px;
+    box-shadow: 1px 1px 7px;
     color: black;
 }
+
+
+
+/*          Screen          */
+
+
 
 .screen {
     height: 70px;
@@ -48,13 +54,13 @@ button {
 .operation {
     height: 14px;
     font-size: 12px;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 10px; 
 }
 
 .display {
     font-size: 32px;
     align-self: flex-end;
-    margin:0 10px 14px 0;
+    margin:0 10px 10px 0;
     font-weight: 400;
 }
 
@@ -63,6 +69,12 @@ button {
     flex-wrap: wrap;
    
 }
+
+
+
+/*          Buttons         */
+
+
 
 .number-button,
 .decimal-button {
@@ -83,6 +95,10 @@ button {
 .decimal-button:focus,
 .delete-button:focus {
     background-color: rgb(168, 168, 168);
+}
+
+.operator-button:focus {
+    background-color: rgb(197, 107, 18)
 }
 
 .clear-button,
