@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="stlye.css">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script
+        src="https://kit.fontawesome.com/4c536a6bd5.js"
+        crossorigin="anonymous"
+    ></script>
 </head>
 <body>
+    <header>Calculator</header>
+
     <main class="calculator">
 
         <div class="screen">
@@ -39,6 +46,19 @@
                 <button class="equals-button" onclick="this.blur()">=</button>   
         </div>
     </main>  
+
+    <footer>
+        <div>
+            Copyright © 
+            <script> 
+                document.write(new Date().getFullYear())
+            </script>
+            Toyhan 
+        </div>
+        <a href="https://github.com/ToyHaynes" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </footer>
 
     <script src="app.js"></script>
 
